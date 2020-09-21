@@ -34,7 +34,7 @@
           </el-input>
         </el-form-item>
         <!--按钮区域-->
-        <el-form-item>
+        <el-form-item class="loginarea">
           <el-button type="primary" @click="login">登录</el-button>
           <el-button type="info" @click="reset">重置</el-button>
         </el-form-item>
@@ -132,5 +132,10 @@ export default {
   width: 100%;
   padding: 0 20px;
   box-sizing: border-box;
+}
+.loginarea {
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-around;
 }
 </style>
