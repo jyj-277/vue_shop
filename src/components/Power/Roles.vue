@@ -282,8 +282,8 @@ export default {
     // 编辑角色
     async showEditDialog(id) {
       const { data: res } = await this.$http.get('roles/' + id)
-      console.log(id)
-      console.log(res)
+      // console.log(id)
+      // console.log(res)
       if (res.meta.status !== 200) {
         return this.$message.error('查询角色信息失败!')
       }

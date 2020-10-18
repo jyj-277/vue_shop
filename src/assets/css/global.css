@@ -6,3 +6,8 @@ body,
   padding: 0;
   min-width: 1336px;
 }
+.el-popper {
+  height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
