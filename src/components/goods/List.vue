@@ -11,17 +11,8 @@
     <el-card>
       <el-row :gutter="20">
         <el-col :span="8">
-          <el-input
-            placeholder="请输入内容"
-            v-model="queryInfo.query"
-            clearable
-            @clear="getGoodsList"
-          >
-            <el-button
-              slot="append"
-              icon="el-icon-search"
-              @click="getGoodsList"
-            ></el-button>
+          <el-input placeholder="请输入内容" v-model="queryInfo.query" clearable @clear="getGoodsList">
+            <el-button slot="append" icon="el-icon-search" @click="getGoodsList"></el-button>
           </el-input>
         </el-col>
         <el-col :span="4">
@@ -33,47 +24,18 @@
       <el-table :data="goodLists" border stripe>
         <el-table-column type="index" label="序号" width="50"></el-table-column>
         <el-table-column label="商品名称" prop="goods_name"></el-table-column>
-        <el-table-column
-          label="商品价格(元)"
-          prop="goods_price"
-          width="120px"
-        ></el-table-column>
-        <el-table-column
-          label="商品重量"
-          prop="goods_weight"
-          width="100px"
-        ></el-table-column>
+        <el-table-column label="商品价格(元)" prop="goods_price" width="120px"></el-table-column>
+        <el-table-column label="商品重量" prop="goods_weight" width="100px"></el-table-column>
         <el-table-column label="创建时间" prop="add_time" width="200px">
-          <template slot-scope="scope">{{
-            scope.row.add_time | dateFormat
-          }}</template>
+          <template slot-scope="scope">{{ scope.row.add_time | dateFormat }}</template>
         </el-table-column>
         <el-table-column label="操作" width="130px">
           <template slot-scope="scope">
-            <el-tooltip
-              class="item"
-              effect="dark"
-              content="编辑"
-              placement="top"
-            >
-              <el-button
-                type="primary"
-                icon="el-icon-edit"
-                size="mini"
-              ></el-button>
+            <el-tooltip class="item" effect="dark" content="编辑" placement="top">
+              <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
             </el-tooltip>
-            <el-tooltip
-              class="item"
-              effect="dark"
-              content="删除"
-              placement="top"
-            >
-              <el-button
-                type="danger"
-                icon="el-icon-delete"
-                size="mini"
-                @click="deleteGoods(scope.row.goods_id)"
-              ></el-button>
+            <el-tooltip class="item" effect="dark" content="删除" placement="top">
+              <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteGoods(scope.row.goods_id)"></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -124,7 +86,7 @@ export default {
       if (res.meta.status !== 200) {
         this.$message.error('获取商品列表失败!')
       }
-      this.$message.success('获取商品列表成功!')
+      // this.$message.success('获取商品列表成功!')
       // console.log(res)
       this.goodLists = res.data.goods
       this.total = res.data.total
@@ -138,15 +100,11 @@ export default {
       this.getGoodsList()
     },
     async deleteGoods(id) {
-      const confirmResult = await this.$confirm(
-        '此操作将永久删除该商品, 是否继续?',
-        '提示',
-        {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }
-      ).catch(err => err)
+      const confirmResult = await this.$confirm('此操作将永久删除该商品, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).catch(err => err)
 
       if (confirmResult !== 'confirm') {
         return this.$message.info('已取消删除!')

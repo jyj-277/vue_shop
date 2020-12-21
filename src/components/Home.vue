@@ -14,21 +14,9 @@
       <el-aside :width="isCollapse ? '64px' : '200px'">
         <div class="toogle-button" @click="toogle">|||</div>
         <!--侧边栏菜单-->
-        <el-menu
-          background-color="#2b4b6b"
-          text-color="#fff"
-          active-text-color="#4094ff"
-          :collapse="isCollapse"
-          :collapse-transition="false"
-          :router="true"
-          :default-active="activePath"
-        >
+        <el-menu background-color="#2b4b6b" text-color="#fff" active-text-color="#4094ff" :collapse="isCollapse" :collapse-transition="false" :router="true" :default-active="activePath" unique-opened>
           <!--一级菜单-->
-          <el-submenu
-            :index="item.id + ''"
-            v-for="item in menulist"
-            :key="item.id"
-          >
+          <el-submenu :index="item.id + ''" v-for="item in menulist" :key="item.id">
             <!--一级菜单的模板区域-->
             <template slot="title">
               <!--图标-->
@@ -37,12 +25,7 @@
               <span>{{ item.authName }}</span>
             </template>
             <!--二级菜单-->
-            <el-menu-item
-              :index="'/' + subItem.path"
-              v-for="subItem in item.children"
-              :key="subItem.id"
-              @click="saveNavState('/' + subItem.path)"
-            >
+            <el-menu-item :index="'/' + subItem.path" v-for="subItem in item.children" :key="subItem.id" @click="saveNavState('/' + subItem.path)">
               <template slot="title">
                 <!--图标-->
                 <i class="el-icon-menu"></i>
